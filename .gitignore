@@ -1,0 +1,151 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Rust
+target/
+
+# Generated training outputs
+trainer_outputs/
+
+# Logs
+*.log
+
+# Secrets / credentials
+*.pem
+*.key
+*.csr
+*.p12
+*.pfx
+*.bin
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local secure storage / encrypted runtime state
+secure_store/
+
+# Generated federated global models
+server/orchestration_agent/aggregated_round_*.pt
+
+# Additional Python environment
+.venv_py313/
+
+# Generated certificates
+*.cer
+
+# Experiment / transfer archives
+*.zip
+
+# Generated / local ML data and model artifacts
+*.parquet
+*.pt
+
+# Local AI/editor configuration
+.claude/settings.local.json
+
+# Local environment configuration
+.env
+
+# Generated TLS certificates
+server/orchestration_agent/certs/
+
+# Generated/archive ZIP files
+*.zip
+
+############################
+# DAIC-WOZ DATASET - LOCAL PREREQUISITE, NEVER COMMIT
+# Licensed human-subjects data. Supply it locally on each machine.
+############################
+data/
+data_norm/
+labels/
+transcripts/
+audio/
+video/
+
+############################
+# Generated runtime / experiment artifacts
+############################
+receipts/
+plots/
+processed/
+explain_logs/
+*.srl
+
+############################
+# Machine-specific local config
+############################
+installer/runtime/configs/local_config.yaml
+
+############################
+# MentalBERT model must NOT live in the repo - live code reads it exclusively
+# from ~/.federated/models/mentalbert (see setup/README.md). A broken
+# submodule gitlink (no content, no .gitmodules) was found and removed from
+# this exact path during the friend-snapshot handoff (2026-09-22) - ignored
+# here so it can't be accidentally re-added the same way.
+############################
+installer/runtime/models/mentalbert/
+
+############################
+# Rust build artifacts
+############################
+installer/windows_signer/target/
+server/orchestration_agent/target/
+
+############################
+# Crypto scratch / local identity
+############################
+client_id.bin
+msg.bin
+sig.bin
+device_key.pem
+client_agent/certs/
+installer/runtime/keys/
+
+############################
+# Extra caches
+############################
+.pytest_cache/
+.mypy_cache/
+.idea/
+*.swp
+
+############################
+# Encrypted update payloads (SecureStore / DP output) - never commit
+############################
+*.enc
+*.pt.enc
+
+############################
+# Immutable local backup of the frozen dataset - never commit, never delete
+############################
+dataset_build/daic_records_multimodal.parquet.ORIGINAL.bak
+
+############################
+# DAIC-WOZ derived build artifacts - not raw data, but derived from the
+# licensed corpus (participant IDs, coverage stats, digests of the
+# restricted parquet). Never read by live runtime code - only produced/
+# consumed by the one-time dataset-build scripts at repo root. dataset_build/
+# itself is NOT ignored - it's where the supplied parquet must be placed.
+############################
+dataset_build/*.json
+
+############################
+# Repo-local mirror of one client session's XAI/receipt artifacts, derived
+# from DAIC-WOZ (real participant ID + label + transcript token excerpts).
+# Never read by live code - always reads the external
+# ~/.federated/data/anchor_session_backups/ copy instead (see
+# scripts/demo_predictions.py). This repo mirror is presentation-history
+# only and must not be pushed to a new remote.
+############################
+anchor_session_backups/
